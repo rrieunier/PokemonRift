@@ -2549,6 +2549,11 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114055277672532204, guid: fa644de68b14a4a8a85a8057627dc011,
+        type: 2}
+      propertyPath: enemy.theName
+      value: Smogogo
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa644de68b14a4a8a85a8057627dc011, type: 2}
   m_IsPrefabAsset: 0
