@@ -768,7 +768,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 9b6f90a7-964f-4b39-8368-4565c7cccaed
-  projectName: TurnBasedTutorial
+  projectName: PokemonRift
   organizationId: rieunierroman
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

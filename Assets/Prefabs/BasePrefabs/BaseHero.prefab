@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 4938173300017186}
   - component: {fileID: 65595615350587112}
   - component: {fileID: 114469220375402710}
+  - component: {fileID: 54917862133176422}
   m_Layer: 0
   m_Name: BaseHero
   m_TagString: Hero
@@ -586,7 +587,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1770292881427412
 GameObject:
   m_ObjectHideFlags: 1
@@ -1350,7 +1351,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1321527349401504}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3, y: 0.47, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1436,6 +1437,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1769160491229676}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54917862133176422
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321527349401504}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65595615350587112
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1491,21 +1507,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hero:
     theName: Mentali
-    baseHP: 1000
-    curHP: 1000
-    baseMP: 20
-    curMP: 20
-    baseAtk: 10
-    curAtk: 10
-    baseDef: 10
-    curDef: 10
+    baseHP: 500
+    curHP: 0
+    baseAtk: 20
+    curAtk: 20
+    baseDef: 20
+    curDef: 20
     attacks:
     - {fileID: 114190636551252306, guid: 03b4906a2f0324975907161bd3c3533e, type: 2}
     stamina: 10
     intellect: 10
     dexterity: 10
     agility: 10
-  currentState: 0
+  currentState: 2
   selector: {fileID: 1769160491229676}
   heroPanel: {fileID: 1598983522234194, guid: e12ac03f263bb4ba4868bd995e0f8783, type: 2}
   heroSpacer: {fileID: 0}

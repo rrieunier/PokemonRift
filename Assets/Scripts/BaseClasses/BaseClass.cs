@@ -9,9 +9,6 @@ public class BaseClass
     public float baseHP;
     public float curHP;
 
-    public float baseMP;
-    public float curMP;
-
     public float baseAtk, curAtk;
     public float baseDef, curDef;
 

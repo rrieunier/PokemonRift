@@ -165,12 +165,7 @@ public class BattleStateMachine : MonoBehaviour
                 else
                 {
                     ClearAttackPanel();
-                    if (performList.Count <= 0)
-                        battleState = PerformAction.Wait;
-                    else
-                    {
-                        battleState = PerformAction.TakeAction;
-                    }
+                    battleState = performList.Count <= 0 ? PerformAction.Wait : PerformAction.TakeAction;
                 }
                 break;
             case PerformAction.Win:
@@ -190,13 +185,15 @@ public class BattleStateMachine : MonoBehaviour
             case HeroGui.Activate:
                 if (heroesToManage.Count > 0)
                 {
-                    heroesToManage[0].transform.Find("Selector").gameObject.SetActive(true);
+                    GameObject hero = heroesToManage[0];
+                    hero.transform.Find("Selector").gameObject.SetActive(true);
                     _heroChoice = new HandleTurn();
 
                     actionPanel.SetActive(true);
 
                     heroName.SetActive(true);
-                    _heroNameText.text = heroesToManage[0].GetComponent<HeroStateMachine>().hero.theName;
+                    turnActionPanel.SetActive(true);
+                    _heroNameText.text = _turnActionText.text = hero.GetComponent<HeroStateMachine>().hero.theName;
 
                     heroInput = HeroGui.SelectAction;
                 }
@@ -322,5 +319,14 @@ public class BattleStateMachine : MonoBehaviour
         actionPanel.SetActive(false);
         attackPanel.SetActive(false);
         enemySelectPanel.SetActive(false);
+    }
+
+    public void VoiceInput(HandleTurn turn)
+    {
+        performList.Add(turn);
+        actionPanel.SetActive(false);
+        heroesToManage[0].transform.Find("Selector").gameObject.SetActive(false);
+        heroesToManage.Remove(turn.AttackerGO);
+        heroInput = HeroGui.Activate;
     }
 }

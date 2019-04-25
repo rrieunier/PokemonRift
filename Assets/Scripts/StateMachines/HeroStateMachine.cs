@@ -47,12 +47,17 @@ public class HeroStateMachine : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        CreateHeroPanel();
+        hero.curHP = hero.baseHP;
+        hero.curAtk = hero.baseAtk;
+        hero.curDef = hero.baseDef;
+
         _currentCooldown = Random.Range(0, 2.5f);
         currentState = TurnState.Processing;
         _bsm = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
         selector.SetActive(false);
         _startPosition = transform.position;
+
+        CreateHeroPanel();
     }
 
     // Update is called once per frame
@@ -178,7 +183,7 @@ public class HeroStateMachine : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentState = TurnState.TakeDamage;
-        hero.curHP -= damage;
+        hero.curHP -= damage - hero.curDef;
         if (hero.curHP < 0f)
         {
             hero.curHP = 0f;

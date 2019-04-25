@@ -47,6 +47,10 @@ public class EnemyStateMachine : MonoBehaviour
         healthBar.maxValue = enemy.baseHP;
         healthBar.value = enemy.baseHP;
         _healthBarColor = healthBar.GetComponentsInChildren<Image>()[1];
+        
+        enemy.curHP = enemy.baseHP;
+        enemy.curAtk = enemy.baseAtk;
+        enemy.curDef = enemy.baseDef;
     }
 
     // Update is called once per frame
@@ -169,7 +173,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        enemy.curHP -= damage;
+        enemy.curHP -= damage - enemy.curDef;
         if (enemy.curHP <= 0)
         {
             enemy.curHP = 0;
