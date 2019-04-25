@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class BaseClass
 {
-    public string theName;
+    public string Name;
 
-    public float baseHP;
-    public float curHP;
+    public float BaseHp, CurHp;
 
-    public float baseAtk, curAtk;
-    public float baseDef, curDef;
+    public float BaseAtk, CurAtk;
+    public float BaseDef, CurDef;
 
-    public List<BaseAttack> attacks;
+    public List<BaseAttack> Attacks;
 }

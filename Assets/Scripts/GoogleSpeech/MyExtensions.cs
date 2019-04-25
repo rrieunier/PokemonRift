@@ -8,7 +8,7 @@ public static class MyExtensions
         ref BaseHero hsm)
     {
         recognizedHero = heroes.FirstOrDefault(
-            hero => hero.GetComponent<HeroStateMachine>().hero.theName.ToLower().Contains(heroName.ToLower()));
+            hero => hero.GetComponent<HeroStateMachine>().hero.Name.ToLower().Contains(heroName.ToLower()));
         Debug.Log(string.Format("{0}   {1}", heroName, heroes.toString("heroes")));
         if (recognizedHero)
         {
@@ -22,9 +22,9 @@ public static class MyExtensions
         switch (type)
         {
             case "heroes":
-                return heroes.Aggregate("", (acc, hero) => acc + hero.GetComponent<HeroStateMachine>().hero.theName);
+                return heroes.Aggregate("", (acc, hero) => acc + hero.GetComponent<HeroStateMachine>().hero.Name);
             case "enemies":
-                return heroes.Aggregate("", (acc, hero) => acc + hero.GetComponent<EnemyStateMachine>().enemy.theName);
+                return heroes.Aggregate("", (acc, hero) => acc + hero.GetComponent<EnemyStateMachine>().enemy.Name);
             default:
                 return "undefined";
         }
@@ -34,7 +34,7 @@ public static class MyExtensions
         out GameObject recognizedEnemy, ref BaseEnemy esm)
     {
         recognizedEnemy = enemies.FirstOrDefault(
-            enemy => enemy.GetComponent<EnemyStateMachine>().enemy.theName.ToLower().Contains(enemyName.ToLower()));
+            enemy => enemy.GetComponent<EnemyStateMachine>().enemy.Name.ToLower().Contains(enemyName.ToLower()));
         Debug.Log(string.Format("{0}   {1}", enemyName, enemies.toString("enemies")));
         if (recognizedEnemy)
         {

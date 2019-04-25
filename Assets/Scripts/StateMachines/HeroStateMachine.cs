@@ -47,9 +47,9 @@ public class HeroStateMachine : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        hero.curHP = hero.baseHP;
-        hero.curAtk = hero.baseAtk;
-        hero.curDef = hero.baseDef;
+        hero.CurHp = hero.BaseHp;
+        hero.CurAtk = hero.BaseAtk;
+        hero.CurDef = hero.BaseDef;
 
         _currentCooldown = Random.Range(0, 2.5f);
         currentState = TurnState.Processing;
@@ -67,7 +67,7 @@ public class HeroStateMachine : MonoBehaviour
         {
             case TurnState.Processing:
 //                UpgradeProgressBar();
-                currentState = hero.curHP > 0f ? TurnState.AddToList : TurnState.Dead;
+                currentState = hero.CurHp > 0f ? TurnState.AddToList : TurnState.Dead;
                 break;
             case TurnState.AddToList:
                 if (_bsm.battleState == BattleStateMachine.PerformAction.HeroesTurn)
@@ -85,7 +85,7 @@ public class HeroStateMachine : MonoBehaviour
                 break;
             case TurnState.TakeDamage:
 //                UpgradeProgressBar();
-                currentState = hero.curHP > 0f ? TurnState.AddToList : TurnState.Dead;
+                currentState = hero.CurHp > 0f ? TurnState.AddToList : TurnState.Dead;
                 break;
             case TurnState.Dead:
                 if (_alive)
@@ -105,7 +105,7 @@ public class HeroStateMachine : MonoBehaviour
                             );
 
 //                    gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
-                    transform.Find("mentali").transform.Rotate(0, 0, -90);
+                    transform.Find("pokemon").transform.Rotate(0, 0, -90);
 
                     _bsm.battleState = BattleStateMachine.PerformAction.CheckAlive;
                 }
@@ -118,21 +118,21 @@ public class HeroStateMachine : MonoBehaviour
         _currentCooldown += Time.deltaTime;
         float calcCooldown = _currentCooldown / MaximumCooldown;
 
-        float hp = hero.curHP / hero.baseHP;
+        float hp = hero.CurHp / hero.BaseHp;
         var localScale = _progressBar.transform.localScale;
         localScale = new Vector3(Mathf.Clamp(calcCooldown, 0, hp), localScale.y, localScale.z);
         _progressBar.transform.localScale = localScale;
         if (_currentCooldown >= MaximumCooldown)
         {
-            currentState = hero.curHP > 0f ? TurnState.AddToList : TurnState.Dead;
+            currentState = hero.CurHp > 0f ? TurnState.AddToList : TurnState.Dead;
             _currentCooldown = 0f;
         }
     }
 
     private void UpdateHeroPanel()
     {
-        _stats.HP.text = String.Format("HP: {0}/{1}", hero.curHP, hero.baseHP);
-        _progressBar.value = hero.curHP;
+        _stats.HP.text = String.Format("HP: {0}/{1}", hero.CurHp, hero.BaseHp);
+        _progressBar.value = hero.CurHp;
     }
 
     private IEnumerator TimeForAction()
@@ -183,17 +183,17 @@ public class HeroStateMachine : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentState = TurnState.TakeDamage;
-        hero.curHP -= damage - hero.curDef;
-        if (hero.curHP < 0f)
+        hero.CurHp -= damage - hero.CurDef;
+        if (hero.CurHp < 0f)
         {
-            hero.curHP = 0f;
+            hero.CurHp = 0f;
         }
         UpdateHeroPanel();
     }
 
     private void DoDamage()
     {
-        float damage = hero.curAtk + _bsm.performList[0].Attack.attackDamage;
+        float damage = hero.CurAtk + _bsm.performList[0].Attack.attackDamage;
         enemyTarget.GetComponent<EnemyStateMachine>().TakeDamage(damage);
     }
 
@@ -201,11 +201,11 @@ public class HeroStateMachine : MonoBehaviour
     {
         heroPanel = Instantiate(heroPanel, heroSpacer, false);
         _stats = heroPanel.GetComponent<HeroPanelStats>();
-        _stats.Name.text = hero.theName;
-        _stats.HP.text = string.Format("HP: {0}/{1}", hero.curHP, hero.baseHP);
+        _stats.Name.text = hero.Name;
+        _stats.HP.text = string.Format("HP: {0}/{1}", hero.CurHp, hero.BaseHp);
 
         _progressBar = _stats.HealthBar;
-        _progressBar.maxValue = hero.baseHP;
-        _progressBar.value = hero.curHP;
+        _progressBar.maxValue = hero.BaseHp;
+        _progressBar.value = hero.CurHp;
     }
 }

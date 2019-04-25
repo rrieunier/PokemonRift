@@ -59,6 +59,8 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject attackButtonPrefab;
     public GameObject targetButtonPrefab;
 
+    public AudioSource globalAudio;
+    
     private readonly List<GameObject> _enemyButtons = new List<GameObject>();
     private readonly List<GameObject> _attackButtons = new List<GameObject>();
 
@@ -135,7 +137,7 @@ public class BattleStateMachine : MonoBehaviour
                         break;
                     }
                     turnText = String.Format("{0} attaque {1} avec {2} !", performance.Attacker,
-                        performance.AttackerTarget.GetComponent<HeroStateMachine>().hero.theName,
+                        performance.AttackerTarget.GetComponent<HeroStateMachine>().hero.Name,
                         performance.Attack.attackName);
                 }
                 else if (performList[0].Type == "Hero")
@@ -144,7 +146,7 @@ public class BattleStateMachine : MonoBehaviour
                     hsm.enemyTarget = performList[0].AttackerTarget;
                     hsm.currentState = HeroStateMachine.TurnState.Action;
                     turnText = String.Format("{0} attaque {1} avec {2} !", performance.Attacker,
-                        performance.AttackerTarget.GetComponent<EnemyStateMachine>().enemy.theName,
+                        performance.AttackerTarget.GetComponent<EnemyStateMachine>().enemy.Name,
                         performance.Attack.attackName);
                 }
                 if (turnText != "")
@@ -193,7 +195,7 @@ public class BattleStateMachine : MonoBehaviour
 
                     heroName.SetActive(true);
                     turnActionPanel.SetActive(true);
-                    _heroNameText.text = _turnActionText.text = hero.GetComponent<HeroStateMachine>().hero.theName;
+                    _heroNameText.text = _turnActionText.text = hero.GetComponent<HeroStateMachine>().hero.Name;
 
                     heroInput = HeroGui.SelectAction;
                 }
@@ -249,7 +251,7 @@ public class BattleStateMachine : MonoBehaviour
             _attackButtons.ForEach(Destroy);
             _attackButtons.Clear();
         }
-        heroesToManage[0].GetComponent<HeroStateMachine>().hero.attacks.ForEach(attack =>
+        heroesToManage[0].GetComponent<HeroStateMachine>().hero.Attacks.ForEach(attack =>
         {
             GameObject newButton = Instantiate(attackButtonPrefab, _attackSpacer, false);
             newButton.transform.Find("Text").GetComponent<Text>().text = attack.attackName;
@@ -289,7 +291,7 @@ public class BattleStateMachine : MonoBehaviour
             GameObject newButton = Instantiate(targetButtonPrefab, _enemiesSpacer, false);
 
             EnemyStateMachine currentEnemy = enemy.GetComponent<EnemyStateMachine>();
-            newButton.transform.Find("Text").GetComponent<Text>().text = currentEnemy.enemy.theName;
+            newButton.transform.Find("Text").GetComponent<Text>().text = currentEnemy.enemy.Name;
 
             EnemySelectButton enemyButton = newButton.GetComponent<EnemySelectButton>();
             enemyButton.EnemyGameObject = enemy;
@@ -300,7 +302,7 @@ public class BattleStateMachine : MonoBehaviour
 
     public void EnemySelectInput(GameObject chosenEnemy)
     {
-        _heroChoice.Attacker = heroesToManage[0].GetComponent<HeroStateMachine>().hero.theName;
+        _heroChoice.Attacker = heroesToManage[0].GetComponent<HeroStateMachine>().hero.Name;
         _heroChoice.AttackerTarget = chosenEnemy;
         heroInput = HeroGui.Done;
     }

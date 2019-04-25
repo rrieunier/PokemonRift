@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: d1b74654fed014b52bb45efec41f940f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: BASE
+    100002: CENTER_RT
+    100004: //RootNode
+    100006: Espeon
+    100008: Head
+    100010: Hip
+    100012: L_Arm
+    100014: L_Ear1
+    100016: L_Ear1_mid
+    100018: L_Ear2
+    100020: L_Ear2_mid
+    100022: L_Foot
+    100024: L_ForeArm
+    100026: L_Hand
+    100028: L_Leg
+    100030: L_Shoulder
+    100032: L_Toe1
+    100034: L_UpLeg
+    100036: LTail1
+    100038: LTail2
+    100040: LTail3
+    100042: Neck1
+    100044: Neck2
+    100046: R_Arm
+    100048: R_Ear1
+    100050: R_Ear1_mid
+    100052: R_Ear2
+    100054: R_Ear2_mid
+    100056: R_Foot
+    100058: R_ForeArm
+    100060: R_Hand
+    100062: R_Leg
+    100064: R_Shoulder
+    100066: R_Toe1
+    100068: R_UpLeg
+    100070: RTail1
+    100072: RTail2
+    100074: RTail3
+    100076: Spine1
+    100078: Spine2
+    100080: Tail1
+    100082: Tail2
+    100084: Tail3
+    100086: Tail4
+    400000: BASE
+    400002: CENTER_RT
+    400004: Espeon
+    400006: //RootNode
+    400008: Head
+    400010: Hip
+    400012: L_Arm
+    400014: L_Ear1
+    400016: L_Ear1_mid
+    400018: L_Ear2
+    400020: L_Ear2_mid
+    400022: L_Foot
+    400024: L_ForeArm
+    400026: L_Hand
+    400028: L_Leg
+    400030: L_Shoulder
+    400032: L_Toe1
+    400034: L_UpLeg
+    400036: LTail1
+    400038: LTail2
+    400040: LTail3
+    400042: Neck1
+    400044: Neck2
+    400046: R_Arm
+    400048: R_Ear1
+    400050: R_Ear1_mid
+    400052: R_Ear2
+    400054: R_Ear2_mid
+    400056: R_Foot
+    400058: R_ForeArm
+    400060: R_Hand
+    400062: R_Leg
+    400064: R_Shoulder
+    400066: R_Toe1
+    400068: R_UpLeg
+    400070: RTail1
+    400072: RTail2
+    400074: RTail3
+    400076: Spine1
+    400078: Spine2
+    400080: Tail1
+    400082: Tail2
+    400084: Tail3
+    400086: Tail4
+    2100000: Body
+    2100002: Face
+    4300000: Espeon
+    9500000: //RootNode
+    13700000: Espeon
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: 2416529bdf9eb49c6848a273bf8ad6f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Face
+    second: {fileID: 2100000, guid: ed23f50b885584940913da18691c8525, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 0
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 1
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.0254
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

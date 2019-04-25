@@ -44,13 +44,13 @@ public class EnemyStateMachine : MonoBehaviour
         _bsm = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
         _startPosition = transform.position;
         selector.SetActive(false);
-        healthBar.maxValue = enemy.baseHP;
-        healthBar.value = enemy.baseHP;
+        healthBar.maxValue = enemy.BaseHp;
+        healthBar.value = enemy.BaseHp;
         _healthBarColor = healthBar.GetComponentsInChildren<Image>()[1];
         
-        enemy.curHP = enemy.baseHP;
-        enemy.curAtk = enemy.baseAtk;
-        enemy.curDef = enemy.baseDef;
+        enemy.CurHp = enemy.BaseHp;
+        enemy.CurAtk = enemy.BaseAtk;
+        enemy.CurDef = enemy.BaseDef;
     }
 
     // Update is called once per frame
@@ -88,7 +88,7 @@ public class EnemyStateMachine : MonoBehaviour
                                 turn.AttackerTarget = _bsm.enemiesInBattle[Random.Range(0, _bsm.enemiesInBattle.Count)]
                             );
 
-                    gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
+                    transform.Find("pokemon").transform.Rotate(0, 0, -90);
 
                     _bsm.battleState = BattleStateMachine.PerformAction.CheckAlive;
                 }
@@ -112,11 +112,11 @@ public class EnemyStateMachine : MonoBehaviour
         {
             HandleTurn attack = new HandleTurn
             {
-                Attacker = enemy.theName,
+                Attacker = enemy.Name,
                 Type = "Enemy",
                 AttackerGO = gameObject,
                 AttackerTarget = _bsm.heroesInBattle[Random.Range(0, _bsm.heroesInBattle.Count)],
-                Attack = enemy.attacks[Random.Range(0, enemy.attacks.Count)]
+                Attack = enemy.Attacks[Random.Range(0, enemy.Attacks.Count)]
             };
 
             _bsm.CollectActions(attack);
@@ -173,10 +173,10 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        enemy.curHP -= damage - enemy.curDef;
-        if (enemy.curHP <= 0)
+        enemy.CurHp -= damage - enemy.CurDef;
+        if (enemy.CurHp <= 0)
         {
-            enemy.curHP = 0;
+            enemy.CurHp = 0;
             currentState = TurnState.Dead;
         }
         UpdateHealthBar();
@@ -184,10 +184,10 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        healthBar.value = enemy.curHP;
-        if (enemy.curHP >= enemy.baseHP / 2)
+        healthBar.value = enemy.CurHp;
+        if (enemy.CurHp >= enemy.BaseHp / 2)
             _healthBarColor.color = Color.green;
-        else if (enemy.curHP >= enemy.baseHP / 5)
+        else if (enemy.CurHp >= enemy.BaseHp / 5)
             _healthBarColor.color = Color.yellow;
         else
             _healthBarColor.color = Color.red;
@@ -195,7 +195,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void DoDamage()
     {
-        float damage = enemy.curAtk + _bsm.performList[0].Attack.attackDamage;
+        float damage = enemy.CurAtk + _bsm.performList[0].Attack.attackDamage;
         heroTarget.GetComponent<HeroStateMachine>().TakeDamage(damage);
     }
 }
