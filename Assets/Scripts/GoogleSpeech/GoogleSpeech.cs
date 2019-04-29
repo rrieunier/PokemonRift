@@ -12,12 +12,15 @@ using Random = UnityEngine.Random;
 public class GoogleSpeech : MonoBehaviour
 {
     public Button button;
-    public string apiKey = "AIzaSyAKi-0enymTn0cegyvPx0BvvW2RTXhALeQ";
+    public string apiKey;
 
     private string _defaultDevice;
     private bool _recording;
     private AudioClip _audioClip;
     private Text _buttonText;
+
+    public Material notRecording, recording;
+
     private string _apiUrl;
     private BattleStateMachine _bsm;
 
@@ -25,7 +28,7 @@ public class GoogleSpeech : MonoBehaviour
     {
         _apiUrl = string.Format("https://speech.googleapis.com/v1/speech:recognize?alt=json&key={0}", apiKey);
 
-//        StartCoroutine(Upload());
+        iPhoneSpeaker.ForceToSpeaker();
 
         foreach (var device in Microphone.devices)
         {
@@ -37,7 +40,7 @@ public class GoogleSpeech : MonoBehaviour
 
     void Update()
     {
-        // Detects changes in recording status
+        // Catch changes in recording status
         if (_recording != Microphone.IsRecording(_defaultDevice))
         {
             // If recording already
@@ -45,6 +48,13 @@ public class GoogleSpeech : MonoBehaviour
             {
                 // Then analyze
                 Analyze();
+                button.image.material = notRecording;
+                _buttonText.color = Color.black;
+            }
+            else
+            {
+                button.image.material = recording;
+                _buttonText.color = Color.white;
             }
             _recording = Microphone.IsRecording(_defaultDevice);
         }
@@ -53,20 +63,22 @@ public class GoogleSpeech : MonoBehaviour
     public void RecordOrAnalyze()
     {
         if (!_recording)
-        {
-            _audioClip = Microphone.Start(_defaultDevice, false, 5, 16000);
-            _bsm.globalAudio.volume = 0.1f;
-        }
+            Record();
         else
-        {
-            _bsm.globalAudio.volume = 1f;
             Analyze();
-        }
+    }
+
+    private void Record()
+    {
+        _audioClip = Microphone.Start(_defaultDevice, false, 5, 16000);
+        _bsm.globalAudio.volume = 0.1f;
     }
 
     private void Analyze()
     {
         Microphone.End(_defaultDevice);
+        _bsm.globalAudio.volume = 1f;
+        iPhoneSpeaker.ForceToSpeaker();
         _buttonText.text = "Analyse en cours...";
         var filenameRand = Random.Range(0.0f, 10.0f);
 
@@ -79,8 +91,6 @@ public class GoogleSpeech : MonoBehaviour
         SavWav.Save(filePath, _audioClip); //Save a temporary Wav File
 
         StartCoroutine(UploadSound(filePath));
-//        StartCoroutine(Upload());
-        _recording = false;
     }
 
     private static string Json(string base64)
@@ -130,7 +140,7 @@ public class GoogleSpeech : MonoBehaviour
         foreach (var result in jsonResponse["results"].Children)
         {
             var newTurn = new HandleTurn {Type = "Hero"};
-            
+
             foreach (var alternative in result["alternatives"].Children)
             {
                 var transcripts = alternative["transcript"].ToString();
@@ -191,11 +201,4 @@ public class GoogleSpeech : MonoBehaviour
             }
         }
     }
-}
-
-[Serializable]
-internal class User : MonoBehaviour
-{
-    public string token;
-    public string error;
 }

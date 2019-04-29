@@ -11,11 +11,11 @@ public class BattleStateMachine : MonoBehaviour
     public enum PerformAction
     {
         Wait,
+        HeroesTurn,
+        EnemiesTurn,
         TakeAction,
         PerformAction,
         CheckAlive,
-        HeroesTurn,
-        EnemiesTurn,
         Win,
         Lose
     }
@@ -112,14 +112,14 @@ public class BattleStateMachine : MonoBehaviour
                 }
                 break;
             case PerformAction.TakeAction:
-                HandleTurn performance = performList[0];
-                GameObject performer = performance.AttackerGO;
+                var performance = performList[0];
+                var performer = performance.AttackerGO;
 
-                string turnText = "";
+                var turnText = "";
 
                 if (performList[0].Type == "Enemy")
                 {
-                    EnemyStateMachine esm = performer.GetComponent<EnemyStateMachine>();
+                    var esm = performer.GetComponent<EnemyStateMachine>();
                     // If the target is still in the battle, the enemy attacks it
                     if (heroesInBattle.Count(hero => hero.gameObject == performance.AttackerTarget) > 0)
                     {
@@ -136,16 +136,16 @@ public class BattleStateMachine : MonoBehaviour
                     {
                         break;
                     }
-                    turnText = String.Format("{0} attaque {1} avec {2} !", performance.Attacker,
+                    turnText = string.Format("{0} attaque {1} avec {2} !", performance.Attacker,
                         performance.AttackerTarget.GetComponent<HeroStateMachine>().hero.Name,
                         performance.Attack.attackName);
                 }
                 else if (performList[0].Type == "Hero")
                 {
-                    HeroStateMachine hsm = performer.GetComponent<HeroStateMachine>();
+                    var hsm = performer.GetComponent<HeroStateMachine>();
                     hsm.enemyTarget = performList[0].AttackerTarget;
                     hsm.currentState = HeroStateMachine.TurnState.Action;
-                    turnText = String.Format("{0} attaque {1} avec {2} !", performance.Attacker,
+                    turnText = string.Format("{0} attaque {1} avec {2} !", performance.Attacker,
                         performance.AttackerTarget.GetComponent<EnemyStateMachine>().enemy.Name,
                         performance.Attack.attackName);
                 }
@@ -256,8 +256,8 @@ public class BattleStateMachine : MonoBehaviour
             GameObject newButton = Instantiate(attackButtonPrefab, _attackSpacer, false);
             newButton.transform.Find("Text").GetComponent<Text>().text = attack.attackName;
 
-            AttackButton atckBtn = newButton.GetComponent<AttackButton>();
-            atckBtn.Attack = attack;
+            AttackButton atkBtn = newButton.GetComponent<AttackButton>();
+            atkBtn.Attack = attack;
 
             _attackButtons.Add(newButton);
         });
@@ -327,6 +327,8 @@ public class BattleStateMachine : MonoBehaviour
     {
         performList.Add(turn);
         actionPanel.SetActive(false);
+        attackPanel.SetActive(false);
+        enemySelectPanel.SetActive(false);
         heroesToManage[0].transform.Find("Selector").gameObject.SetActive(false);
         heroesToManage.Remove(turn.AttackerGO);
         heroInput = HeroGui.Activate;

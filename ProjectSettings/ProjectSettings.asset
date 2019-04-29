@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 0
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: TurnBasedTutorial
+  companyName: Roman Rieunier
+  productName: "Pok\xE9mon Rift"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -39,10 +39,9 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos:
-  - logo: {fileID: 0}
-    duration: 2
-  m_VirtualRealitySplashScreen: {fileID: 0}
+  m_SplashScreenLogos: []
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: b3108bfc6b94b46bb85fcdcce677c649,
+    type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
@@ -70,11 +69,11 @@ PlayerSettings:
   macRetinaSupport: 1
   runInBackground: 1
   captureSingleScreen: 0
-  muteOtherAudioSources: 0
+  muteOtherAudioSources: 1
   Prepare IOS For Recording: 1
   Force IOS Speakers When Recording: 0
   deferSystemGesturesMode: 0
-  hideHomeButton: 0
+  hideHomeButton: 1
   submitAnalytics: 1
   usePlayerLog: 1
   bakeCollisionMeshes: 0
@@ -120,7 +119,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1
+  bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -172,7 +171,7 @@ PlayerSettings:
   StripUnusedMeshComponents: 1
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
-  iOSTargetOSVersionString: 8.0
+  iOSTargetOSVersionString: 11.0
   tvOSSdkVersion: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 9.0
@@ -182,14 +181,21 @@ PlayerSettings:
   uIStatusBarHidden: 1
   uIExitOnSuspend: 0
   uIStatusBarStyle: 0
-  iPhoneSplashScreen: {fileID: 0}
-  iPhoneHighResSplashScreen: {fileID: 0}
-  iPhoneTallHighResSplashScreen: {fileID: 0}
-  iPhone47inSplashScreen: {fileID: 0}
-  iPhone55inPortraitSplashScreen: {fileID: 0}
-  iPhone55inLandscapeSplashScreen: {fileID: 0}
-  iPhone58inPortraitSplashScreen: {fileID: 0}
-  iPhone58inLandscapeSplashScreen: {fileID: 0}
+  iPhoneSplashScreen: {fileID: 2800000, guid: b3108bfc6b94b46bb85fcdcce677c649, type: 3}
+  iPhoneHighResSplashScreen: {fileID: 2800000, guid: b3108bfc6b94b46bb85fcdcce677c649,
+    type: 3}
+  iPhoneTallHighResSplashScreen: {fileID: 2800000, guid: b3108bfc6b94b46bb85fcdcce677c649,
+    type: 3}
+  iPhone47inSplashScreen: {fileID: 2800000, guid: b3108bfc6b94b46bb85fcdcce677c649,
+    type: 3}
+  iPhone55inPortraitSplashScreen: {fileID: 2800000, guid: b3108bfc6b94b46bb85fcdcce677c649,
+    type: 3}
+  iPhone55inLandscapeSplashScreen: {fileID: 2800000, guid: b3108bfc6b94b46bb85fcdcce677c649,
+    type: 3}
+  iPhone58inPortraitSplashScreen: {fileID: 2800000, guid: b3108bfc6b94b46bb85fcdcce677c649,
+    type: 3}
+  iPhone58inLandscapeSplashScreen: {fileID: 2800000, guid: b3108bfc6b94b46bb85fcdcce677c649,
+    type: 3}
   iPadPortraitSplashScreen: {fileID: 0}
   iPadHighResPortraitSplashScreen: {fileID: 0}
   iPadLandscapeSplashScreen: {fileID: 0}
@@ -204,9 +210,11 @@ PlayerSettings:
   tvOSTopShelfImageLayers2x: []
   tvOSTopShelfImageWideLayers: []
   tvOSTopShelfImageWideLayers2x: []
-  iOSLaunchScreenType: 0
-  iOSLaunchScreenPortrait: {fileID: 0}
-  iOSLaunchScreenLandscape: {fileID: 0}
+  iOSLaunchScreenType: 1
+  iOSLaunchScreenPortrait: {fileID: 2800000, guid: b3108bfc6b94b46bb85fcdcce677c649,
+    type: 3}
+  iOSLaunchScreenLandscape: {fileID: 2800000, guid: b3108bfc6b94b46bb85fcdcce677c649,
+    type: 3}
   iOSLaunchScreenBackgroundColor:
     serializedVersion: 2
     rgba: 0
